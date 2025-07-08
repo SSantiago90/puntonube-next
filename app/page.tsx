@@ -1,20 +1,18 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import HeroHome from "@/components/HeroHome";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Blog from "@/components/blog/BlogPreview";
 
 export default function Home() {
   return (
     <main className="min-h-screen">           
-    <div className="min-h-screen">
-      <Header />
-      <Hero />
+    <div className="min-h-screen">            
+      <HeroHome />
       <Services />
       <About />
-      <Contact />
-      <Footer />
+      <Blog/>
+      <Contact />      
     </div>
     </main>
   );

@@ -2,17 +2,18 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Contacto
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            ¿Listo para comenzar tu proyecto? Hablemos sobre cómo podemos ayudarte
+            ¿Listo para comenzar tu proyecto? Hablemos y lo hacemos realidad
           </p>
         </div>
         
@@ -39,19 +40,33 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">Teléfono</p>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">+54 (343) 4571505</p>
+                  </div>
+                
+                </div>
+                <div className="flex items-center space-x-4">
+                   <div className="p-3 bg-light-blue-50 rounded-full">
+                    <SiWhatsapp className="h-6 w-6 text-light-blue-600" />                     
+                  </div>
+                    <div>
+                    <a target="_blank" href={`https://wa.me/+5493434191727`}>
+                    <p className="font-semibold text-gray-800">Whatsapp</p>                    
+                    <p className="text-gray-600">+54 (343) 4191727</p>
+                    </a>
                   </div>
                 </div>
                 
+                 {/*  <
                 <div className="flex items-center space-x-4">
                   <div className="p-3 bg-light-blue-50 rounded-full">
                     <MapPin className="h-6 w-6 text-light-blue-600" />
                   </div>
-                  <div>
+                 div>
                     <p className="font-semibold text-gray-800">Ubicación</p>
                     <p className="text-gray-600">Ciudad, País</p>
-                  </div>
+                  </> 
                 </div>
+                  */}
               </CardContent>
             </Card>
             
