@@ -1,8 +1,9 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { ReactNode } from "react";
+
 import CloudImage from "./CloudImage";
 import SVGBackground from "./ui/svgbackground";
-import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface HeroProps {
   children: ReactNode;

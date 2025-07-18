@@ -1,13 +1,11 @@
-import CloudImage from "@/components/CloudImage";
-import { FileQuestionMark } from "lucide-react";
-import Link from "next/link";
-import SVGBackground from "@/components/ui/svgbackground";
+import { FileQuestionMark } from 'lucide-react';
+import Link from 'next/link';
 
-// This 404 page doesn't display the navigation header menu because it is not included in the component's JSX structure.
-// Typically, a navigation bar would be part of the layout or included directly here. In this case, it's omitted for a cleaner, distraction-free error page.
+import CloudImage from '@/components/CloudImage';
+import SVGBackground from '@/components/ui/svgbackground';
 
 const NotFound = () => {
-  console.warn("404 Error: User attempted to access non-existent route:");
+  console.warn('404 Error: User attempted to access non-existent route:');
 
   return (
     <section

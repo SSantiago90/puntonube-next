@@ -1,8 +1,9 @@
 
-import { Calendar, User, Tag, Share2, Heart } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Calendar, Heart,Share2, Tag, User } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface BlogPostProps {
   post: {

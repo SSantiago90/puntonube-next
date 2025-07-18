@@ -1,8 +1,15 @@
-"use client";
+'use client';
 
-import { Cloud, Menu } from "lucide-react";
+import { Cloud, Menu } from 'lucide-react';
+import Link from 'next/link';
 
-import Link from "next/link";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,30 +17,29 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerClose, DrawerTitle } from "@/components/ui/drawer";
+} from '@/components/ui/navigation-menu';
 
 const services = [
   {
-    title: "Desarrollo Web",
-    description: "Sitios web modernos y responsivos",
-    href: "/servicios/desarrollo-web"
+    title: 'Desarrollo Web',
+    description: 'Sitios web modernos y responsivos',
+    href: '/servicios/desarrollo-web',
   },
   {
-    title: "Servicios de IA",
-    description: "Inteligencia artificial para tu negocio",
-    href: "/servicios/inteligencia-artificial"
+    title: 'Servicios de IA',
+    description: 'Inteligencia artificial para tu negocio',
+    href: '/servicios/inteligencia-artificial',
   },
   {
-    title: "Diseño Gráfico",
-    description: "Identidad visual y branding",
-    href: "/servicios/diseno"
+    title: 'Diseño Gráfico',
+    description: 'Identidad visual y branding',
+    href: '/servicios/diseno',
   },
   {
-    title: "Enseñanza y Consultoría",
-    description: "Capacitación y mentoría técnica",
-    href: "/servicios/consultoria"
-  }
+    title: 'Enseñanza y Consultoría',
+    description: 'Capacitación y mentoría técnica',
+    href: '/servicios/consultoria',
+  },
 ];
 
 const Header = () => {
@@ -45,7 +51,7 @@ const Header = () => {
             <Cloud className="h-8 w-8 text-light-blue-600" />
             <span className="text-2xl font-bold text-gray-800">Punto nube</span>
           </Link>
-          
+
           <div className="hidden md:flex items-center space-x-8">
             <NavigationMenu>
               <NavigationMenuList>
@@ -61,7 +67,9 @@ const Header = () => {
                             href={service.href}
                             className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-light-blue-50 hover:text-light-blue-600 focus:bg-light-blue-50 focus:text-light-blue-600"
                           >
-                            <div className="text-sm font-medium leading-none">{service.title}</div>
+                            <div className="text-sm font-medium leading-none">
+                              {service.title}
+                            </div>
                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                               {service.description}
                             </p>
@@ -73,46 +81,122 @@ const Header = () => {
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-            
-            <a href="#about" className="text-gray-600 hover:text-light-blue-600 transition-colors">
-              Acerca de
-            </a>
-            <Link href="/blog" className="text-gray-600 hover:text-light-blue-600 transition-colors">
+
+            <Link
+              href="/blog"
+              className="text-gray-600 hover:text-light-blue-600 transition-colors"
+            >
               Blog
             </Link>
-            <a href="#contact" className="text-gray-600 hover:text-light-blue-600 transition-colors">
+            <Link
+              href="/aprende"
+              className="text-gray-600 hover:text-light-blue-600 transition-colors"
+            >
+              Aprende
+            </Link>
+            <Link
+              href="/#contact"
+              className="text-gray-600 hover:text-light-blue-600 transition-colors"
+            >
               Contacto
-            </a>
+            </Link>
+            <Link
+              href="/#about"
+              className="text-gray-600 hover:text-light-blue-600 transition-colors"
+            >
+              Nosotros
+            </Link>
           </div>
           <div className="md:hidden">
             <Drawer>
               <DrawerTrigger asChild>
-                <button aria-label="Abrir menú" className="p-2 rounded-md text-gray-700 hover:bg-light-blue-50 focus:outline-none focus:ring-2 focus:ring-light-blue-400">
+                <button
+                  aria-label="Abrir menú"
+                  className="p-2 rounded-md text-gray-700 hover:bg-light-blue-50 focus:outline-none focus:ring-2 focus:ring-light-blue-400"
+                >
                   <Menu className="h-7 w-7" />
                 </button>
               </DrawerTrigger>
               <DrawerContent className="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center p-8">
                 <DrawerTitle className="sr-only">Menú principal</DrawerTitle>
                 <DrawerClose asChild>
-                  <button aria-label="Cerrar menú" className="absolute top-6 right-6 p-2 rounded-md text-gray-700 hover:bg-light-blue-50 focus:outline-none focus:ring-2 focus:ring-light-blue-400">
+                  <button
+                    aria-label="Cerrar menú"
+                    className="absolute top-6 right-6 p-2 rounded-md text-gray-700 hover:bg-light-blue-50 focus:outline-none focus:ring-2 focus:ring-light-blue-400"
+                  >
                     <span className="sr-only">Cerrar menú</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-7 w-7">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="h-7 w-7"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </DrawerClose>
                 <div className="flex flex-col items-center space-y-8 text-2xl font-semibold">
-                  <Link href="/" className="text-gray-800 hover:text-light-blue-600 transition-colors" onClick={() => (document.activeElement instanceof HTMLElement && document.activeElement.blur())}>Inicio</Link>
+                  <Link
+                    href="/"
+                    className="text-gray-800 hover:text-light-blue-600 transition-colors"
+                    onClick={() =>
+                      document.activeElement instanceof HTMLElement &&
+                      document.activeElement.blur()
+                    }
+                  >
+                    Inicio
+                  </Link>
                   <div className="flex flex-col items-center space-y-4">
                     {services.map((service) => (
-                      <Link key={service.title} href={service.href} className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl" onClick={() => (document.activeElement instanceof HTMLElement && document.activeElement.blur())}>
+                      <Link
+                        key={service.title}
+                        href={service.href}
+                        className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl"
+                        onClick={() =>
+                          document.activeElement instanceof HTMLElement &&
+                          document.activeElement.blur()
+                        }
+                      >
                         {service.title}
                       </Link>
                     ))}
                   </div>
-                  <a href="#about" className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl" onClick={() => (document.activeElement instanceof HTMLElement && document.activeElement.blur())}>Acerca de</a>
-                  <Link href="/blog" className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl" onClick={() => (document.activeElement instanceof HTMLElement && document.activeElement.blur())}>Blog</Link>
-                  <a href="#contact" className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl" onClick={() => (document.activeElement instanceof HTMLElement && document.activeElement.blur())}>Contacto</a>
+                  <Link
+                    href="/#about"
+                    className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl"
+                    onClick={() =>
+                      document.activeElement instanceof HTMLElement &&
+                      document.activeElement.blur()
+                    }
+                  >
+                    Acerca de
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl"
+                    onClick={() =>
+                      document.activeElement instanceof HTMLElement &&
+                      document.activeElement.blur()
+                    }
+                  >
+                    Blog
+                  </Link>
+                  <Link
+                    href="/#contact"
+                    className="text-gray-800 hover:text-light-blue-600 transition-colors text-xl"
+                    onClick={() =>
+                      document.activeElement instanceof HTMLElement &&
+                      document.activeElement.blur()
+                    }
+                  >
+                    Contacto
+                  </Link>
                 </div>
               </DrawerContent>
             </Drawer>

@@ -1,9 +1,10 @@
 "use client";
-import { useRef } from "react";
-import { Code, Brain, Palette, Users } from "lucide-react";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Brain, Code, Palette, Users } from "lucide-react";
 import Link from "next/link";
+import { useRef } from "react";
+
 import { Button } from "@/components/ui/button";
+import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Function to remove accents and convert to URL-friendly format
 const createUrlSlug = (text: string) => {

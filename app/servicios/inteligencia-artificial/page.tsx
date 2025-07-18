@@ -1,59 +1,85 @@
-import { ArrowRight, Brain } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import { ArrowRight, Brain, Database, MessageCircle } from 'lucide-react';
+
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import { Button } from '@/components/ui/button';
 
 const subServices = [
   {
-    icon: Brain,
-    title: "Chatbots Inteligentes",
-    description: "Automatizá la atención al cliente con IA.",
-    features: ["Respuestas automáticas 24/7", "Integración con WhatsApp y web", "Personalización avanzada", "Ahorro de tiempo y recursos"],
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+    icon: MessageCircle,
+    title: 'Chatbots Inteligentes',
+    description: 'Automatizá la atención al cliente con IA.',
+    features: [
+      'Respuestas automáticas 24/7',
+      'Integración con WhatsApp y web',
+      'Personalización avanzada',
+      'Ahorro de tiempo y recursos',
+    ],
+    image: '/img/services/chatbot.png',
   },
   {
     icon: Brain,
-    title: "Automatización de Procesos",
-    description: "Optimizá tareas repetitivas con inteligencia artificial.",
-    features: ["Procesos más rápidos", "Reducción de errores", "Aumento de productividad", "Escalabilidad"],
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+    title: 'Automatización de Procesos',
+    description: 'Optimizá tareas repetitivas con inteligencia artificial.',
+    features: [
+      'Automatización de emails',
+      'Seguimiento de ventas a clientes',
+      'IA Generativa para creación de contenido',
+    ],
+    image: '/img/services/mails.jpeg',
   },
   {
-    icon: Brain,
-    title: "Análisis de Datos",
-    description: "Tomá mejores decisiones con datos procesados por IA.",
-    features: ["Visualización de insights", "Predicción de tendencias", "Informes automáticos", "Soporte a la toma de decisiones"],
-    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80"
-  }
+    icon: Database,
+    title: 'Análisis de Datos',
+    description: 'Tomá mejores decisiones con datos procesados por IA.',
+    features: [
+      'Visualización de insights',
+      'Predicción de tendencias',
+      'Informes automáticos',
+      'Soporte a la toma de decisiones',
+    ],
+    image: '/img/services/graph.avif',
+  },
 ];
 
 const AIPage = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <Hero className="from-violet-600 to-violet-800" nextLink="/servicios/consultoria" prevLink="/servicios/diseno" color="text-violet-700">
+      <Hero
+        className="from-violet-600 to-violet-800"
+        nextLink="/servicios/consultoria"
+        prevLink="/servicios/diseno"
+        color="text-violet-700"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-md">
-              <span className="block text-purple-200">Automatización</span>mediante IA
-              
+              <span className="block text-purple-200">Automatización</span>
+              mediante IA
             </h1>
             <p className="text-xl text-purple-100 mb-12 leading-relaxed max-w-2xl">
-            Trabajá de forma más inteligente, no más complicada. Implementamos soluciones de automatización e inteligencia artificial para optimizar tus operaciones, ahorrarte tiempo y potenciar tu productividad.
+              Trabajá de forma más inteligente, no más complicada. Implementamos
+              soluciones de automatización e inteligencia artificial para
+              optimizar tus operaciones, ahorrarte tiempo y potenciar tu
+              productividad.
             </p>
-            <Button size="lg" className="bg-white text-indigo-700 border-2 border-indigo-700 hover:bg-indigo-50 text-lg px-8 py-4">
+            <Button
+              size="lg"
+              className="bg-white text-indigo-700 border-2 border-indigo-700 hover:bg-indigo-50 text-lg px-8 py-4"
+            >
               Empezar mi proyecto
               <ArrowRight className="ml-2 h-6 w-6 text-indigo-700" />
             </Button>
           </div>
           <div className="order-1 lg:order-2 relative">
             <div className="relative max-w-3xl mx-auto">
-              <div className="relative ">                  
-                  <img 
-                    src="/img/mockup-web.png" 
-                    alt="IA mockup"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
+              <div className="relative hover:scale-105 transition-transform duration-300 cursor:pointer">
+                <img
+                  src="/img/services/chatia.png"
+                  alt="IA mockup"
+                  className="w-full h-full object-cover rounded-xl"
+                />
               </div>
             </div>
           </div>
@@ -72,12 +98,12 @@ const AIPage = () => {
           </div>
           <div className="space-y-20 max-w-7xl mx-auto">
             {subServices.map((service, index) => (
-              <div 
+              <div
                 key={index}
                 className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-14 items-center`}
               >
                 <div className="flex-1">
-                  <img 
+                  <img
                     src={service.image}
                     alt={service.title}
                     className="w-full h-80 object-cover rounded-2xl shadow-2xl"
@@ -97,7 +123,10 @@ const AIPage = () => {
                   </p>
                   <ul className="space-y-4">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start text-lg text-gray-700">
+                      <li
+                        key={featureIndex}
+                        className="flex items-start text-lg text-gray-700"
+                      >
                         <div className="w-3 h-3 bg-purple-400 rounded-full mr-4 mt-2 flex-shrink-0"></div>
                         <span>{feature}</span>
                       </li>
@@ -113,4 +142,4 @@ const AIPage = () => {
   );
 };
 
-export default AIPage; 
+export default AIPage;

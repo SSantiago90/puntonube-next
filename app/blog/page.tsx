@@ -1,16 +1,17 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import BlogPost from "@/components/blog/BlogPost";
-import BlogSidebar from "@/components/blog/BlogSidebar";
-import Link from "next/link";
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+
+import BlogPost from '@/components/blog/BlogPost';
+import BlogSidebar from '@/components/blog/BlogSidebar';
+import { Button } from '@/components/ui/button';
 
 const blogPosts = [
   {
     id: 1,
-    title: "El Futuro de la Inteligencia Artificial en los Negocios",
+    title: 'El Futuro de la Inteligencia Artificial en los Negocios',
     content: `La inteligencia artificial está revolucionando la forma en que las empresas operan y toman decisiones. En este artículo, exploramos las tendencias emergentes y las oportunidades que presenta la IA para los negocios modernos.
 
 Las empresas que adoptan tempranamente la IA están viendo mejoras significativas en la eficiencia operacional, la experiencia del cliente y la toma de decisiones basada en datos. Desde la automatización de procesos hasta el análisis predictivo, la IA está transformando industrias enteras.
@@ -23,20 +24,22 @@ Los principales beneficios incluyen:
 - Predicción de tendencias del mercado
 
 Sin embargo, la implementación exitosa de la IA requiere una estrategia cuidadosa, inversión en talento técnico y una cultura organizacional que abrace la innovación.`,
-    excerpt: "Descubre cómo la IA está transformando las empresas modernas y qué oportunidades presenta para tu negocio.",
-    category: "Inteligencia Artificial",
+    excerpt:
+      'Descubre cómo la IA está transformando las empresas modernas y qué oportunidades presenta para tu negocio.',
+    category: 'Inteligencia Artificial',
     author: {
-      name: "María González",
-      role: "Especialista en IA",
-      avatar: "MG"
+      name: 'María González',
+      role: 'Especialista en IA',
+      avatar: 'MG',
     },
-    date: "15 Mar 2024",
-    readTime: "5 min",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop"
+    date: '15 Mar 2024',
+    readTime: '5 min',
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop',
   },
   {
     id: 2,
-    title: "Diseño UX/UI: Principios Fundamentales para el Éxito",
+    title: 'Diseño UX/UI: Principios Fundamentales para el Éxito',
     content: `El diseño de experiencia de usuario es mucho más que crear interfaces atractivas. Se trata de entender profundamente las necesidades, motivaciones y comportamientos de los usuarios para crear productos digitales que sean tanto funcionales como deleitables.
 
 Los principios fundamentales del buen diseño UX/UI incluyen:
@@ -52,20 +55,22 @@ Los principios fundamentales del buen diseño UX/UI incluyen:
 5. **Retroalimentación visual**: Los usuarios deben recibir confirmación clara de sus acciones.
 
 El proceso de diseño UX efectivo comienza con la investigación de usuarios, continúa con la creación de personas y mapas de viaje del usuario, y culmina con prototipos iterativos que se validan constantemente con usuarios reales.`,
-    excerpt: "Los principios clave del diseño de experiencia de usuario que todo negocio debe conocer para destacar.",
-    category: "Diseño",
+    excerpt:
+      'Los principios clave del diseño de experiencia de usuario que todo negocio debe conocer para destacar.',
+    category: 'Diseño',
     author: {
-      name: "Carlos Mendoza",
-      role: "Designer Senior",
-      avatar: "CM"
+      name: 'Carlos Mendoza',
+      role: 'Designer Senior',
+      avatar: 'CM',
     },
-    date: "12 Mar 2024",
-    readTime: "7 min",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop"
+    date: '12 Mar 2024',
+    readTime: '7 min',
+    image:
+      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop',
   },
   {
     id: 3,
-    title: "Desarrollo Web Moderno: React vs Next.js",
+    title: 'Desarrollo Web Moderno: React vs Next.js',
     content: `En el ecosistema de desarrollo web moderno, React y Next.js son dos tecnologías que frecuentemente se comparan, aunque en realidad son complementarias. React es una biblioteca para construir interfaces de usuario, mientras que Next.js es un framework que extiende React con características adicionales.
 
 **React:**
@@ -97,24 +102,26 @@ Usa Next.js cuando:
 - Necesitas funcionalidades full-stack
 
 La elección depende de los requisitos específicos del proyecto, pero Next.js es generalmente la opción más completa para aplicaciones web modernas.`,
-    excerpt: "Comparamos las tecnologías más populares para desarrollo web y cuándo usar cada una.",
-    category: "Desarrollo Web",
+    excerpt:
+      'Comparamos las tecnologías más populares para desarrollo web y cuándo usar cada una.',
+    category: 'Desarrollo Web',
     author: {
-      name: "Ana Torres",
-      role: "Full Stack Developer",
-      avatar: "AT"
+      name: 'Ana Torres',
+      role: 'Full Stack Developer',
+      avatar: 'AT',
     },
-    date: "10 Mar 2024",
-    readTime: "6 min",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop"
-  }
+    date: '10 Mar 2024',
+    readTime: '6 min',
+    image:
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop',
+  },
 ];
 
 const BlogPage = () => {
   const [visiblePosts, setVisiblePosts] = useState(2);
 
   const handleLoadMore = () => {
-    setVisiblePosts(prev => Math.min(prev + 2, blogPosts.length));
+    setVisiblePosts((prev) => Math.min(prev + 2, blogPosts.length));
   };
 
   return (
@@ -124,7 +131,11 @@ const BlogPage = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center space-x-4">
             <Link href="/">
-              <Button variant="ghost" size="sm" className="text-light-blue-600 hover:bg-light-blue-50">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-light-blue-600 hover:bg-light-blue-50"
+              >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Volver al inicio
               </Button>
@@ -147,7 +158,7 @@ const BlogPage = () => {
             {/* Load more button */}
             {visiblePosts < blogPosts.length && (
               <div className="mt-12 text-center">
-                <Button 
+                <Button
                   onClick={handleLoadMore}
                   size="lg"
                   className="bg-light-blue-600 hover:bg-light-blue-700 text-white px-8 py-3"

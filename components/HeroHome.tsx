@@ -1,9 +1,11 @@
 import { ArrowRight, Cloud, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import CloudImage from "./CloudImage";
 import Link from "next/link";
-import SVGBackground from "./ui/svgbackground";
 import { FC } from "react";
+
+import { Button } from "@/components/ui/button";
+
+import CloudImage from "./CloudImage";
+import SVGBackground from "./ui/svgbackground";
 
 interface HeroHomeProps {
   className?: string;

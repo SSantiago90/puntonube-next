@@ -1,10 +1,12 @@
 "use client";
 
+import { ArrowRight,Calendar, Tag, User } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
-import { Calendar, User, Tag, ArrowRight } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const blogPosts = [
   {
@@ -231,14 +233,16 @@ const Blog = () => {
         {/* Botón ver más posts */}
         {visiblePosts < filteredPosts.length && (
           <div className="text-center mt-12">
-            <Button 
-              onClick={handleShowMore}
-              size="lg"
-              className="bg-light-blue-600 hover:bg-light-blue-700 text-white px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Ver más artículos
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="/blog">
+              <Button               
+                size="lg"
+                className="bg-light-blue-600 hover:bg-light-blue-700 text-white px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                Ver más artículos
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+              
           </div>
         )}
 

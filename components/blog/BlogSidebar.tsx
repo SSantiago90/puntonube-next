@@ -1,7 +1,8 @@
 
-import { Calendar, TrendingUp, Archive } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Archive,Calendar, TrendingUp } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface BlogSidebarProps {
   posts: Array<{
@@ -21,27 +22,27 @@ const BlogSidebar = ({ posts }: BlogSidebarProps) => {
   }, {} as Record<string, number>);
 
   return (
-    <div className="space-y-6 sticky top-24">
+    <div className="space-y-6 sticky top-24 ">
       {/* Recent Posts */}
-      <Card className="shadow-lg border-0">
+      <Card className="shadow-lg border-0 bg-sky-600">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold text-gray-800 flex items-center">
-            <TrendingUp className="w-5 h-5 mr-2 text-light-blue-600" />
+          <CardTitle className="text-lg font-semibold  text-sky-200  flex items-center">
+            <TrendingUp className="w-5 h-5 mr-2" />
             Posts Recientes
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {posts.slice(0, 5).map((post) => (
             <div key={post.id} className="border-b border-gray-100 last:border-b-0 pb-3 last:pb-0">
-              <h4 className="font-medium text-gray-800 text-sm leading-tight mb-2 line-clamp-2">
+              <h4 className="font-medium text-sky-100 text-sm leading-tight mb-2 line-clamp-2">
                 {post.title}
               </h4>
-              <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="flex items-center justify-between text-xs text-sky-300">
                 <span className="flex items-center">
                   <Calendar className="w-3 h-3 mr-1" />
                   {post.date}
                 </span>
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs text-white opacity-60">
                   {post.category}
                 </Badge>
               </div>
@@ -51,17 +52,17 @@ const BlogSidebar = ({ posts }: BlogSidebarProps) => {
       </Card>
 
       {/* Categories */}
-      <Card className="shadow-lg border-0">
+      <Card className="shadow-lg border-0 bg-sky-600">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold text-gray-800 flex items-center">
-            <Archive className="w-5 h-5 mr-2 text-light-blue-600" />
+          <CardTitle className="text-lg font-semibold  text-sky-200  flex items-center">
+            <Archive className="w-5 h-5 mr-2" />
             Categorías
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {Object.entries(categoryCounts).map(([category, count]) => (
-            <div key={category} className="flex items-center justify-between">
-              <span className="text-sm text-gray-700">{category}</span>
+            <div key={category} className="flex items-center justify-between text-sky-100">
+              <span className="text-sm">{category}</span>
               <Badge variant="secondary" className="bg-light-blue-100 text-light-blue-700">
                 {count}
               </Badge>
@@ -71,25 +72,25 @@ const BlogSidebar = ({ posts }: BlogSidebarProps) => {
       </Card>
 
       {/* Archive by month */}
-      <Card className="shadow-lg border-0">
+      <Card className="shadow-lg border-0 bg-sky-600">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold text-gray-800 flex items-center">
-            <Calendar className="w-5 h-5 mr-2 text-light-blue-600" />
+          <CardTitle className="text-lg font-semibold text-sky-200 flex items-center">
+            <Calendar className="w-5 h-5 mr-2" />
             Archivo
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-700">Marzo 2024</span>
-            <span className="text-gray-500">{posts.length} posts</span>
+        <CardContent className="space-y-2 text-sky-100">
+          <div className="flex items-center justify-between text-sm ">
+            <span>Marzo 2024</span>
+            <span className="text-sky-300">{posts.length} posts</span>
+          </div>
+          <div className="flex items-center justify-between text-sm ">
+            <span className="text-sky-300">Febrero 2024</span>
+            <span className="text-sky-500">8 posts</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-700">Febrero 2024</span>
-            <span className="text-gray-500">8 posts</span>
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-700">Enero 2024</span>
-            <span className="text-gray-500">12 posts</span>
+            <span className="text-sky-300">Enero 2024</span>
+            <span className="text-sky-500">12 posts</span>
           </div>
         </CardContent>
       </Card>
