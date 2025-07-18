@@ -1,8 +1,7 @@
+import { Archive, Calendar, TrendingUp } from 'lucide-react';
 
-import { Archive,Calendar, TrendingUp } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface BlogSidebarProps {
   posts: Array<{
@@ -16,10 +15,13 @@ interface BlogSidebarProps {
 
 const BlogSidebar = ({ posts }: BlogSidebarProps) => {
   // Group posts by category for quick stats
-  const categoryCounts = posts.reduce((acc, post) => {
-    acc[post.category] = (acc[post.category] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+  const categoryCounts = posts.reduce(
+    (acc, post) => {
+      acc[post.category] = (acc[post.category] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>
+  );
 
   return (
     <div className="space-y-6 sticky top-24 ">
@@ -33,7 +35,10 @@ const BlogSidebar = ({ posts }: BlogSidebarProps) => {
         </CardHeader>
         <CardContent className="space-y-4">
           {posts.slice(0, 5).map((post) => (
-            <div key={post.id} className="border-b border-gray-100 last:border-b-0 pb-3 last:pb-0">
+            <div
+              key={post.id}
+              className="border-b border-gray-100 last:border-b-0 pb-3 last:pb-0"
+            >
               <h4 className="font-medium text-sky-100 text-sm leading-tight mb-2 line-clamp-2">
                 {post.title}
               </h4>
@@ -42,7 +47,10 @@ const BlogSidebar = ({ posts }: BlogSidebarProps) => {
                   <Calendar className="w-3 h-3 mr-1" />
                   {post.date}
                 </span>
-                <Badge variant="outline" className="text-xs text-white opacity-60">
+                <Badge
+                  variant="outline"
+                  className="text-xs text-white opacity-60"
+                >
                   {post.category}
                 </Badge>
               </div>
@@ -61,9 +69,15 @@ const BlogSidebar = ({ posts }: BlogSidebarProps) => {
         </CardHeader>
         <CardContent className="space-y-3">
           {Object.entries(categoryCounts).map(([category, count]) => (
-            <div key={category} className="flex items-center justify-between text-sky-100">
+            <div
+              key={category}
+              className="flex items-center justify-between text-sky-100"
+            >
               <span className="text-sm">{category}</span>
-              <Badge variant="secondary" className="bg-light-blue-100 text-light-blue-700">
+              <Badge
+                variant="secondary"
+                className="bg-light-blue-100 text-light-blue-700"
+              >
                 {count}
               </Badge>
             </div>
@@ -98,7 +112,9 @@ const BlogSidebar = ({ posts }: BlogSidebarProps) => {
       {/* Newsletter signup */}
       <Card className="hidden shadow-lg border-0 bg-gradient-to-br from-light-blue-50 to-light-blue-100">
         <CardContent className="p-6 text-center">
-          <h3 className="font-semibold text-gray-800 mb-2">¡Mantente actualizado!</h3>
+          <h3 className="font-semibold text-gray-800 mb-2">
+            ¡Mantente actualizado!
+          </h3>
           <p className="text-sm text-gray-600 mb-4">
             Recibe nuestros últimos artículos directamente en tu email.
           </p>

@@ -1,9 +1,8 @@
+import { Calendar, Heart, Share2, Tag, User } from 'lucide-react';
 
-import { Calendar, Heart,Share2, Tag, User } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface BlogPostProps {
   post: {
@@ -28,8 +27,8 @@ const BlogPost = ({ post }: BlogPostProps) => {
     <Card className="overflow-hidden shadow-lg border-0 bg-white">
       {/* Header image */}
       <div className="relative h-64 md:h-80 overflow-hidden">
-        <img 
-          src={post.image} 
+        <img
+          src={post.image}
           alt={post.title}
           className="w-full h-full object-cover"
         />
@@ -47,7 +46,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
           <h2 className="text-3xl font-bold text-gray-800 mb-4 leading-tight">
             {post.title}
           </h2>
-          
+
           {/* Author and meta info */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-4">
@@ -57,11 +56,13 @@ const BlogPost = ({ post }: BlogPostProps) => {
                 </span>
               </div>
               <div>
-                <p className="font-semibold text-gray-800">{post.author.name}</p>
+                <p className="font-semibold text-gray-800">
+                  {post.author.name}
+                </p>
                 <p className="text-sm text-gray-500">{post.author.role}</p>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <div className="flex items-center space-x-1">
                 <Calendar className="w-4 h-4" />
@@ -87,19 +88,25 @@ const BlogPost = ({ post }: BlogPostProps) => {
         {/* Post actions */}
         <div className="flex items-center justify-between pt-6 border-t border-gray-100">
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-gray-600 hover:text-red-500">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gray-600 hover:text-red-500"
+            >
               <Heart className="w-4 h-4 mr-2" />
               Me gusta
             </Button>
-            <Button variant="ghost" size="sm" className="text-gray-600 hover:text-light-blue-600">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gray-600 hover:text-light-blue-600"
+            >
               <Share2 className="w-4 h-4 mr-2" />
               Compartir
             </Button>
           </div>
-          
-          <div className="text-sm text-gray-500">
-            Artículo #{post.id}
-          </div>
+
+          <div className="text-sm text-gray-500">Artículo #{post.id}</div>
         </div>
       </CardContent>
     </Card>

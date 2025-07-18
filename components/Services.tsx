@@ -1,61 +1,90 @@
-"use client";
-import { Brain, Code, Palette, Users } from "lucide-react";
-import Link from "next/link";
-import { useRef } from "react";
+'use client';
+import { Brain, Code, Palette, Users } from 'lucide-react';
+import Link from 'next/link';
+import { useRef } from 'react';
 
-import { Button } from "@/components/ui/button";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from '@/components/ui/button';
+import {
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 // Function to remove accents and convert to URL-friendly format
 const createUrlSlug = (text: string) => {
   // Special mapping for specific services to match folder names
   const urlMapping: { [key: string]: string } = {
-    "Desarrollo Web": "desarrollo-web",
-    "Diseño Gráfico": "diseno",
-    "Servicios IA": "inteligencia-artificial",
-    "Consultoría y Capacitación Tecnológica": "consultoria"
+    'Desarrollo Web': 'desarrollo-web',
+    'Diseño Gráfico': 'diseno',
+    'Servicios IA': 'inteligencia-artificial',
+    'Consultoría y Capacitación Tecnológica': 'consultoria',
   };
-  
-  return urlMapping[text] || text
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // Remove accents
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/[^a-z0-9-]/g, ''); // Remove any other non-alphanumeric characters except hyphens
+
+  return (
+    urlMapping[text] ||
+    text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove accents
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/[^a-z0-9-]/g, '')
+  ); // Remove any other non-alphanumeric characters except hyphens
 };
 
 const services = [
   {
     icon: Code,
-    title: "Desarrollo Web",
-    description: "Diseño y desarrollo de sitios web personalizados",
-    features: ["Multiplicá tus ventas creando tu tienda online", "Soluciones pensadas exclusivamente para vos.", "Ecommerce, Blog, Portfolios para profesionales.", "Administrá vos mismo el contenido de tu web"],
-    color: "from-sky-500 to-sky-700",
-    iconColor: "#0099ff"
+    title: 'Desarrollo Web',
+    description: 'Diseño y desarrollo de sitios web personalizados',
+    features: [
+      'Multiplicá tus ventas creando tu tienda online',
+      'Soluciones pensadas exclusivamente para vos.',
+      'Ecommerce, Blog, Portfolios para profesionales.',
+      'Administrá vos mismo el contenido de tu web',
+    ],
+    color: 'from-sky-500 to-sky-700',
+    iconColor: '#0099ff',
   },
   {
     icon: Users,
-    title: "Consultoría y Capacitación Tecnológica",
-    description: "Asesoramiento para tu equipo, y capacitación para emprendedores y profesionales independientes.",
-    features: ["Capacitamos a tu equipo sobre las tendencias del mercado", "Workshops para emprendedores y profesionales", "Sesiones personalizadas de aprendizaje:"],
-    color: "from-teal-400 to-teal-600",
-    iconColor: "#009688"
+    title: 'Consultoría y Capacitación Tecnológica',
+    description:
+      'Asesoramiento para tu equipo, y capacitación para emprendedores y profesionales independientes.',
+    features: [
+      'Capacitamos a tu equipo sobre las tendencias del mercado',
+      'Workshops para emprendedores y profesionales',
+      'Sesiones personalizadas de aprendizaje:',
+    ],
+    color: 'from-teal-400 to-teal-600',
+    iconColor: '#009688',
   },
   {
     icon: Palette,
-    title: "Diseño Gráfico",
-    description: "Diseñamos identidades visuales únicas que comunican la esencia de tu marca.",
-    features: ["Impacta a primera vista", "Marcas coherentes y profesionales", "Materiales que conectan y venden", "Diseños optimizados para el mundo digital "],
-    color: "from-orange-400 to-orange-600",
-    iconColor: "#ee8500"
+    title: 'Diseño Gráfico',
+    description:
+      'Diseñamos identidades visuales únicas que comunican la esencia de tu marca.',
+    features: [
+      'Impacta a primera vista',
+      'Marcas coherentes y profesionales',
+      'Materiales que conectan y venden',
+      'Diseños optimizados para el mundo digital ',
+    ],
+    color: 'from-orange-400 to-orange-600',
+    iconColor: '#ee8500',
   },
   {
     icon: Brain,
-    title: "Servicios IA",
-    description: "Implementamos soluciones de inteligencia artificial para automatizar y optimizar procesos.",
-    features: ["Chats automatizados que trabajan por vos", "Automatización de tareas ", "Decisiones más inteligentes con tus datos"],
-    color: "from-purple-500 to-purple-700",
-    iconColor: "#7a00e6"
+    title: 'Servicios IA',
+    description:
+      'Implementamos soluciones de inteligencia artificial para automatizar y optimizar procesos.',
+    features: [
+      'Chats automatizados que trabajan por vos',
+      'Automatización de tareas ',
+      'Decisiones más inteligentes con tus datos',
+    ],
+    color: 'from-purple-500 to-purple-700',
+    iconColor: '#7a00e6',
   },
 ];
 
@@ -72,8 +101,8 @@ const Services = () => {
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 12; 
-      const rotateY = ((centerX - x) / centerX) * 12; 
+      const rotateX = ((y - centerY) / centerY) * 12;
+      const rotateY = ((centerX - x) / centerX) * 12;
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
     }
   };
@@ -82,12 +111,16 @@ const Services = () => {
   const handleMouseLeave = (index: number) => {
     const card = cardRefs.current[index];
     if (card) {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+      card.style.transform =
+        'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
     }
   };
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-100">
+    <section
+      id="services"
+      className="py-20 bg-gradient-to-b from-white to-gray-100"
+    >
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -97,12 +130,14 @@ const Services = () => {
             Descubrí cómo potenciar tu marca con soluciones de punta.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
-              ref={el => { cardRefs.current[index] = el; }}
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
               className={
                 `group relative overflow-hidden transition-all duration-500 ease-out border-0 bg-white cursor-pointer perspective-1000 ` +
                 `hover:shadow-2xl hover:z-20`
@@ -110,11 +145,13 @@ const Services = () => {
               style={{
                 transformStyle: 'preserve-3d',
               }}
-              onMouseMove={e => handleMouseMove(e, index)}
+              onMouseMove={(e) => handleMouseMove(e, index)}
               onMouseLeave={() => handleMouseLeave(index)}
             >
               {/* Hover overlay with gradient background */}
-              <div className={`absolute inset-0 bg-gradient-to-b ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none`}></div>
+              <div
+                className={`absolute inset-0 bg-gradient-to-b ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none`}
+              ></div>
               {/* Pattern background, matching Hero */}
               <div
                 className="absolute inset-0 opacity-15 pointer-events-none z-0"
@@ -129,12 +166,14 @@ const Services = () => {
                 <span className="text-[#7a00e6] group-hover:text-[#7a00e6]"></span>
                 <span className="text-[#ee8500] group-hover:text-[#ee8500]"></span>
                 <span className="text-[#0099ff] group-hover:text-[#0099ff]"></span>
-                </div>
+              </div>
               <div className="relative z-10 transition-all duration-500 ease-out group-hover:text-white">
                 <CardHeader className="text-center pb-4">
-                  <div className={`mx-auto mb-4 p-4 bg-white rounded-full w-fit group-hover:bg-white/20 transition-all duration-500 ease-out group-hover:scale-110`}>
-                    <service.icon                      
-                      className={`h-8 w-8 text-[${service.iconColor}] hover:text-white group-hover:text-white transition-colors duration-500`} 
+                  <div
+                    className={`mx-auto mb-4 p-4 bg-white rounded-full w-fit group-hover:bg-white/20 transition-all duration-500 ease-out group-hover:scale-110`}
+                  >
+                    <service.icon
+                      className={`h-8 w-8 text-[${service.iconColor}] hover:text-white group-hover:text-white transition-colors duration-500`}
                     />
                   </div>
                   <CardTitle className="text-3xl text-gray-800 group-hover:text-white transition-colors duration-500 font-bold">
@@ -147,20 +186,27 @@ const Services = () => {
                 <CardContent>
                   <ul className="space-y-2">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-gray-700 group-hover:text-white/90 transition-colors duration-500">
+                      <li
+                        key={featureIndex}
+                        className="flex items-center text-gray-700 group-hover:text-white/90 transition-colors duration-500"
+                      >
                         <div className="w-2 h-2 bg-gray-400 group-hover:bg-white rounded-full mr-3 transition-colors duration-500"></div>
                         {feature}
                       </li>
                     ))}
                   </ul>
                   <div className="mt-8 flex justify-center">
-                    <Link href={`/servicios/${createUrlSlug(service.title)}`}
-                      passHref>
+                    <Link
+                      href={`/servicios/${createUrlSlug(service.title)}`}
+                      passHref
+                    >
                       <Button
                         asChild
                         className="group-hover:bg-white group-hover:text-black transition-colors duration-500 font-semibold px-6 py-2 rounded-full shadow-md"
                       >
-                        <span className={`group-hover:text-[${service.iconColor}] transition-colors duration-200`}>
+                        <span
+                          className={`group-hover:text-[${service.iconColor}] transition-colors duration-200`}
+                        >
                           Saber más
                         </span>
                       </Button>
@@ -177,4 +223,3 @@ const Services = () => {
 };
 
 export default Services;
-
