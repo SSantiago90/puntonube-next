@@ -1,10 +1,71 @@
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import { SiWhatsapp } from '@icons-pack/react-simple-icons';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, Phone, Send } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+
+const formSchema = z.object({
+  name: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
+  email: z.string().email('Ingresa un email válido'),
+  message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres'),
+});
 
 const Contact = () => {
+  const { toast } = useToast();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      toast({
+        title: '¡Mensaje enviado!',
+        description:
+          'Gracias por contactarnos. Te responderemos a la brevedad.',
+      });
+      form.reset();
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: `No se pudo enviar el mensaje. Inténtalo de nuevo más tarde. Mensaje: ${error}`,
+        variant: 'destructive',
+      });
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -59,18 +120,6 @@ const Contact = () => {
                     </a>
                   </div>
                 </div>
-
-                {/*  <
-                <div className="flex items-center space-x-4">
-                  <div className="p-3 bg-light-blue-50 rounded-full">
-                    <MapPin className="h-6 w-6 text-light-blue-600" />
-                  </div>
-                 div>
-                    <p className="font-semibold text-gray-800">Ubicación</p>
-                    <p className="text-gray-600">Ciudad, País</p>
-                  </> 
-                </div>
-                  */}
               </CardContent>
             </Card>
 
@@ -81,36 +130,66 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Tu nombre"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:border-light-blue-500 focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Tu email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:border-light-blue-500 focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder="Tu mensaje"
-                      rows={4}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:border-light-blue-500 focus:outline-none transition-colors resize-none"
-                    ></textarea>
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-light-blue-600 hover:bg-light-blue-700 text-white"
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4"
                   >
-                    Enviar Mensaje
-                    <Send className="ml-2 h-4 w-4" />
-                  </Button>
-                </form>
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="sr-only">Nombre</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Tu nombre" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="sr-only">Email</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Tu email" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="sr-only">Mensaje</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Tu mensaje"
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button
+                      type="submit"
+                      className="w-full bg-light-blue-600 hover:bg-light-blue-700 text-white"
+                      disabled={form.formState.isSubmitting}
+                    >
+                      {form.formState.isSubmitting
+                        ? 'Enviando...'
+                        : 'Enviar Mensaje'}
+                      <Send className="ml-2 h-4 w-4" />
+                    </Button>
+                  </form>
+                </Form>
               </CardContent>
             </Card>
           </div>

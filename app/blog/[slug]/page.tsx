@@ -5,10 +5,10 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 
 import { RelatedPostCard } from '@/components/blog/RelatedPostCard';
+import { Callout } from '@/components/mdx/Callout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { getAllPosts, getPostData } from '@/lib/posts';
-import { Callout } from '@/components/mdx/Callout';
 
 // Define los componentes que estarán disponibles en los archivos MDX.
 const components = {
@@ -37,7 +37,11 @@ async function getPost(slug: string) {
   }
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const post = await getPost(params.slug);
   const allPosts = getAllPosts();
   const relatedPosts = allPosts
