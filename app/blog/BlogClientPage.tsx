@@ -25,11 +25,13 @@ type Post = {
 
 const BlogClientPage = ({ allPosts }: { allPosts: Post[] }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedMonth, setSelectedMonth] = useState('All');
 
-  const filteredPosts =
-    selectedCategory === 'All'
-      ? allPosts
-      : allPosts.filter((post) => post.category === selectedCategory);
+  const filteredPosts = allPosts.filter(post => {
+    const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
+    const monthMatch = selectedMonth === 'All' || post.date.startsWith(selectedMonth);
+    return categoryMatch && monthMatch;
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-light-blue-50">
@@ -68,7 +70,15 @@ const BlogClientPage = ({ allPosts }: { allPosts: Post[] }) => {
             <BlogSidebar
               posts={allPosts}
               selectedCategory={selectedCategory}
-              onSelectCategory={setSelectedCategory}
+              onSelectCategory={(category) => {
+                setSelectedCategory(category);
+                setSelectedMonth('All'); // Reset month filter
+              }}
+              selectedMonth={selectedMonth}
+              onSelectMonth={(month) => {
+                setSelectedMonth(month);
+                setSelectedCategory('All'); // Reset category filter
+              }}
             />
           </div>
         </div>
