@@ -16,6 +16,9 @@ const compat = new FlatCompat({
 });
 
 export default [
+  {
+    ignores: ['node_modules/**', '.next/**', '.turbo/**'],
+  },
   ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
   {
     plugins: {

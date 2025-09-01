@@ -56,7 +56,7 @@ const upcomingClasses = [
   {
     id: 1,
     title: 'Introducción al Desarrollo Web',
-    date: '2025-07-15',
+    date: '2025-10-15',
     image: '/img/workshops/web-development.jpg',
     time: '19:00',
     duration: '2 horas',
@@ -94,7 +94,7 @@ const upcomingClasses = [
   {
     id: 2,
     title: 'React Avanzado y Hooks',
-    date: '2025-07-18',
+    date: '2025-10-18',
     image: '/img/workshops/react-advanced.jpg',
     time: '20:00',
     duration: '3 horas',
@@ -132,7 +132,7 @@ const upcomingClasses = [
   {
     id: 3,
     title: 'Diseño UX/UI para Principiantes',
-    date: '2025-07-22',
+    date: '2025-10-22',
     image: '/img/workshops/ux-ui-design.jpg',
     time: '18:30',
     duration: '2.5 horas',
@@ -170,7 +170,7 @@ const upcomingClasses = [
   {
     id: 4,
     title: 'SEO y Marketing Digital',
-    date: '2025-07-25',
+    date: '2025-10-25',
     image: '/img/workshops/seo-marketing.jpg',
     time: '19:30',
     duration: '2 horas',
@@ -208,7 +208,7 @@ const upcomingClasses = [
   {
     id: 5,
     title: 'Inteligencia Artificial para Empresas',
-    date: '2025-07-29',
+    date: '2025-10-29',
     image: '/img/workshops/ai-business.jpg',
     time: '20:30',
     duration: '2 horas',
@@ -394,6 +394,7 @@ const ConsultingPage = () => {
   };
 
   const nextClass = getNextClass();
+
   console.log(nextClass);
 
   return (

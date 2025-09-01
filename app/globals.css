@@ -115,3 +115,30 @@
     animation: float 3s ease-in-out infinite;
   }
 }
+
+/* Estilos para rehype-pretty-code */
+pre code {
+  font-family: 'Fira Code', monospace;
+}
+
+pre {
+    @apply bg-[#24292e] text-white p-4 rounded-lg overflow-x-auto;
+    line-height: 1.5;
+}
+
+code {
+    @apply font-mono;
+}
+
+pre code .line {
+    display: block;
+    min-height: 1.5rem; /* Asegura que las líneas vacías tengan altura */
+}
+
+pre code .line.highlighted {
+    @apply bg-gray-700;
+}
+
+pre code .word.highlighted {
+    @apply bg-blue-700 rounded-md p-1;
+}
