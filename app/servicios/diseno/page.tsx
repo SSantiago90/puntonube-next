@@ -1,10 +1,12 @@
+'use client';
+
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
 import Portfolio from '@/components/Portfolio';
 import { Button } from '@/components/ui/button';
+import { useHero } from '@/context/HeroContext';
 
 const portfolioItems = [
   {
@@ -112,15 +114,15 @@ const portfolioItems = [
 ];
 
 const DesignPage = () => {
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <Hero
-        className="from-teal-600 to-teal-700"
-        nextLink="/servicios/inteligencia-artificial"
-        prevLink="/servicios/desarrollo-web"
-        color="text-teal-600"
-      >
+  const { setHeroProps } = useHero();
+
+  useEffect(() => {
+    setHeroProps({
+      className: 'from-teal-600 to-teal-700',
+      nextLink: '/servicios/inteligencia-artificial',
+      prevLink: '/servicios/desarrollo-web',
+      color: 'text-teal-600',
+      children: (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-md">
@@ -180,7 +182,16 @@ const DesignPage = () => {
             </div>
           </div>
         </div>
-      </Hero>
+      ),
+    });
+
+    return () => {
+      setHeroProps(null);
+    };
+  }, [setHeroProps]);
+
+  return (
+    <>
       {/* Sub-services Section */}
       <Portfolio
         title="Nuestros Diseños"
@@ -237,7 +248,7 @@ const DesignPage = () => {
           </div>
         </div>
       </section> */}
-    </div>
+    </>
   );
 };
 

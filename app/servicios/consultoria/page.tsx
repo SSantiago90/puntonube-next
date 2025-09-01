@@ -13,12 +13,10 @@ import {
   Users,
 } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -37,6 +35,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useHero } from '@/context/HeroContext';
 import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
@@ -289,56 +288,6 @@ const services = [
     ctaRef: '/',
   },
 ];
-const services_old = [
-  {
-    icon: BookOpen,
-    title: 'Capacitación Técnica',
-    description: 'Formación especializada en tecnologías modernas',
-    features: [
-      'Desarrollo Web Frontend',
-      'Backend y APIs',
-      'Diseño UX/UI',
-      'Marketing Digital',
-      'Inteligencia Artificial',
-    ],
-  },
-  {
-    icon: Target,
-    title: 'Consultoría Estratégica',
-    description: 'Asesoramiento personalizado para tu negocio',
-    features: [
-      'Auditoría técnica',
-      'Estrategia digital',
-      'Optimización de procesos',
-      'Transformación digital',
-      'Análisis competitivo',
-    ],
-  },
-  {
-    icon: Users,
-    title: 'Mentorías Personalizadas',
-    description: 'Acompañamiento uno a uno para acelerar tu crecimiento',
-    features: [
-      'Revisión de código',
-      'Feedback personalizado',
-      'Plan de carrera',
-      'Networking profesional',
-      'Seguimiento continuo',
-    ],
-  },
-  {
-    icon: TrendingUp,
-    title: 'Workshops Empresariales',
-    description: 'Talleres intensivos para equipos de trabajo',
-    features: [
-      'Capacitación in-company',
-      'Talleres de innovación',
-      'Team building técnico',
-      'Metodologías ágiles',
-      'Cultura digital',
-    ],
-  },
-];
 
 const getLevelColor = (level: string) => {
   switch (level) {
@@ -354,6 +303,7 @@ const getLevelColor = (level: string) => {
 };
 
 const ConsultingPage = () => {
+  const { setHeroProps } = useHero();
   const [selectedClass, setSelectedClass] = useState<
     (typeof upcomingClasses)[0] | null
   >(null);
@@ -369,6 +319,97 @@ const ConsultingPage = () => {
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       )[0];
   };
+
+  const nextClass = getNextClass();
+
+  useEffect(() => {
+    setHeroProps({
+      className: 'from-indigo-600 to-indigo-700',
+      nextLink: '/servicios/desarrollo-web',
+      prevLink: '/servicios/inteligencia-artificial',
+      color: 'text-indigo-700',
+      children: (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="text-center lg:text-left">
+            <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-md">
+              Potenciá{' '}
+              <span className="block bg-gradient-to-r  bg-clip-text">
+                tu carrera Profesional
+              </span>
+            </h1>
+            <p className="text-2xl text-white/90 mb-12 leading-relaxed max-w-2xl ">
+              Descubrí capacitaciones en herramientas digitales mediante
+              cursos, workshops abiertos, y mentorías personalizadas.
+            </p>
+            <Link href="#event-calendar">
+              <Button
+                size="lg"
+                className="bg-white text-indigo-700 hover:bg-light-blue-100 text-lg px-8 py-4 shadow-2xl"
+              >
+                Ver próximos eventos
+                <ArrowRight className="ml-2 h-6 w-6" />
+              </Button>
+            </Link>
+          </div>
+
+          <div className="relative">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/30">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="p-3 bg-gradient-to-r from-indigo-400 to-light-blue-400 rounded-xl">
+                  <Play className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <p className="text-white/80 text-left">
+                    Próxima Clase en Vivo
+                  </p>
+                  <div className="flex align-middle items-center">
+                    <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse mr-2"></div>
+                    <h3 className="text-xl font-bold text-white">
+                      {nextClass.title}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-white/90">
+                  <span className="flex items-center">
+                    <Calendar className="h-4 w-4 mr-2" /> {nextClass?.date}
+                  </span>
+                  <span className="flex items-center">
+                    <Clock className="h-4 w-4 mr-2" /> {nextClass?.time} hrs
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-white/90">
+                  <span className="flex items-center">
+                    <Users className="h-4 w-4 mr-2" />
+                    {nextClass?.spots} cupos disponibles
+                  </span>
+                  {nextClass.certification && (
+                    <span className="flex items-center">
+                      <Award className="h-4 w-4 mr-2" />
+                      Certificado incluido
+                    </span>
+                  )}
+                </div>
+                <Button
+                  className="w-full bg-gradient-to-r from-indigo-500 to-light-blue-500 hover:from-indigo-600 hover:to-light-blue-600 text-white border-0"
+                  onClick={() => nextClass && handleInscription(nextClass)}
+                  disabled={!nextClass}
+                >
+                  Reservar mi lugar
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    });
+
+    return () => {
+      setHeroProps(null);
+    };
+  }, [setHeroProps, nextClass]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -393,104 +434,8 @@ const ConsultingPage = () => {
     setIsModalOpen(true);
   };
 
-  const nextClass = getNextClass();
-
-  console.log(nextClass);
-
   return (
-    <div className="min-h-screen">
-      <Header />
-
-      <Hero
-        className="from-indigo-600 to-indigo-700"
-        nextLink="/servicios/desarrollo-web"
-        prevLink="/servicios/inteligencia-artificial"
-        color="text-indigo-700"
-      >
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="text-center lg:text-left">
-              <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-md">
-                Potenciá{' '}
-                <span className="block bg-gradient-to-r  bg-clip-text">
-                  tu carrera Profesional
-                </span>
-              </h1>
-              <p className="text-2xl text-white/90 mb-12 leading-relaxed max-w-2xl ">
-                Descubrí capacitaciones en herramientas digitales mediante
-                cursos, workshops abiertos, y mentorías personalizadas.
-              </p>
-              <Link href="#event-calendar">
-                <Button
-                  size="lg"
-                  className="bg-white text-indigo-700 hover:bg-light-blue-100 text-lg px-8 py-4 shadow-2xl"
-                >
-                  Ver próximos eventos
-                  <ArrowRight className="ml-2 h-6 w-6" />
-                </Button>
-              </Link>
-            </div>
-
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/30">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="p-3 bg-gradient-to-r from-indigo-400 to-light-blue-400 rounded-xl">
-                    <Play className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-white/80 text-left">
-                      Próxima Clase en Vivo
-                    </p>
-                    <div className="flex align-middle items-center">
-                      <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse mr-2"></div>
-                      <h3 className="text-xl font-bold text-white">
-                        {nextClass.title}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between text-white/90">
-                    <span className="flex items-center">
-                      <Calendar className="h-4 w-4 mr-2" /> {nextClass?.date}
-                    </span>
-                    <span className="flex items-center">
-                      <Clock className="h-4 w-4 mr-2" /> {nextClass?.time} hrs
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-white/90">
-                    <span className="flex items-center">
-                      <Users className="h-4 w-4 mr-2" />
-                      {nextClass?.spots} cupos disponibles
-                    </span>
-                    {nextClass.certification && (
-                      <span className="flex items-center">
-                        <Award className="h-4 w-4 mr-2" />
-                        Certificado incluido
-                      </span>
-                    )}
-                  </div>
-                  <Button
-                    className="w-full bg-gradient-to-r from-indigo-500 to-light-blue-500 hover:from-indigo-600 hover:to-light-blue-600 text-white border-0"
-                    onClick={() => nextClass && handleInscription(nextClass)}
-                    disabled={!nextClass}
-                  >
-                    Reservar mi lugar
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Background decorations */}
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform skew-y-3"></div> 
-        <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-white/40 rounded-full animate-ping"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-indigo-300/60 rounded-full animate-ping delay-100"></div>         
-        */}
-      </Hero>
-
+    <>
       {/* Calendar Section */}
       <div className="relative">
         <div
@@ -595,7 +540,8 @@ const ConsultingPage = () => {
                             <>¡Gratis!</>
                           ) : (
                             <span>
-                              <small className="text-2xl">{'$'}</small>{' '}
+                              <small className="text-2xl">{'
+}</small>{' '}
                               {formatPrice(classItem.price)}{' '}
                               <small className="text-sm">ARS</small>
                             </span>
@@ -800,7 +746,7 @@ const ConsultingPage = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 };
 

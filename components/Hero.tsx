@@ -1,5 +1,9 @@
+'use client';
+
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
 import CloudImage from './CloudImage';
@@ -22,14 +26,14 @@ const Hero = ({
   prevLink,
   color = 'text-black',
 }: HeroProps) => {
-  // Check if className contains gradient classes
+  const pathname = usePathname();
   const hasGradient = className.includes('from-') && className.includes('to-');
   const gradientClass = hasGradient ? 'bg-gradient-to-t' : '';
 
   return (
-    <section
+    <motion.section
       id={id}
-      className={`min-h-screen flex items-center justify-center pt-20 relative overflow-hidden ${gradientClass} ${className}`}
+      className={`min-h-screen flex items-center justify-center pt-20 relative overflow-hidden ${gradientClass} ${className} transition-colors duration-1000 ease-in-out`}
     >
       {/* Left Arrow */}
       {prevLink && (
@@ -58,8 +62,20 @@ const Hero = ({
         <SVGBackground />
       </div>
       <CloudImage />
-      <div className="container mx-auto px-6 relative z-10">{children}</div>
-    </section>
+      <div className="container mx-auto px-6 relative z-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </motion.section>
   );
 };
 

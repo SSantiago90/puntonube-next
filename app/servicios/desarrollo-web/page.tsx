@@ -1,9 +1,11 @@
-import { ArrowRight, Code, Edit3, ShoppingCart, User } from 'lucide-react';
+'use client';
 
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
+import { ArrowRight, Code, Edit3, ShoppingCart, User } from 'lucide-react';
+import { useEffect } from 'react';
+
 import Portfolio from '@/components/Portfolio';
 import { Button } from '@/components/ui/button';
+import { useHero } from '@/context/HeroContext';
 
 const subServices = [
   {
@@ -149,16 +151,15 @@ const portfolioWeb = [
 ];
 
 const WebDevelopmentPage = () => {
-  return (
-    <div className="min-h-screen">
-      <Header />
+  const { setHeroProps } = useHero();
 
-      <Hero
-        className="from-blue-500 to-blue-400"
-        nextLink="/servicios/diseno"
-        prevLink="/servicios/consultoria"
-        color="text-blue-500"
-      >
+  useEffect(() => {
+    setHeroProps({
+      className: 'from-blue-500 to-blue-400',
+      nextLink: '/servicios/diseno',
+      prevLink: '/servicios/consultoria',
+      color: 'text-blue-500',
+      children: (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-lg">
@@ -191,8 +192,16 @@ const WebDevelopmentPage = () => {
             </div>
           </div>
         </div>
-      </Hero>
+      ),
+    });
 
+    return () => {
+      setHeroProps(null);
+    };
+  }, [setHeroProps]);
+
+  return (
+    <>
       {/* Sub-services Section */}
       <Portfolio
         title="Nuestros Proyectos"
@@ -262,7 +271,7 @@ const WebDevelopmentPage = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

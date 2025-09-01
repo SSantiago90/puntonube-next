@@ -1,8 +1,10 @@
-import { ArrowRight, Brain, Database, MessageCircle } from 'lucide-react';
+'use client';
 
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
+import { ArrowRight, Brain, Database, MessageCircle } from 'lucide-react';
+import { useEffect } from 'react';
+
 import { Button } from '@/components/ui/button';
+import { useHero } from '@/context/HeroContext';
 
 const subServices = [
   {
@@ -43,15 +45,15 @@ const subServices = [
 ];
 
 const AIPage = () => {
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <Hero
-        className="from-violet-600 to-violet-800"
-        nextLink="/servicios/consultoria"
-        prevLink="/servicios/diseno"
-        color="text-violet-700"
-      >
+  const { setHeroProps } = useHero();
+
+  useEffect(() => {
+    setHeroProps({
+      className: 'from-violet-600 to-violet-800',
+      nextLink: '/servicios/consultoria',
+      prevLink: '/servicios/diseno',
+      color: 'text-violet-700',
+      children: (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-md">
@@ -84,7 +86,16 @@ const AIPage = () => {
             </div>
           </div>
         </div>
-      </Hero>
+      ),
+    });
+
+    return () => {
+      setHeroProps(null);
+    };
+  }, [setHeroProps]);
+
+  return (
+    <>
       {/* Sub-services Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
@@ -138,7 +149,7 @@ const AIPage = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 
