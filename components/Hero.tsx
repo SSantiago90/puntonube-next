@@ -42,11 +42,11 @@ const Hero = ({
           className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 bg-white/80 rounded-full shadow hover:bg-white transition-colors"
         >
           <span className={`text-3xl ${color}`}>
-            {' '}
             <ChevronLeft />
           </span>
         </Link>
       )}
+
       {/* Right Arrow */}
       {nextLink && (
         <Link
@@ -58,25 +58,25 @@ const Hero = ({
           </span>
         </Link>
       )}
+
       <div className="absolute inset-0 opacity-10">
         <SVGBackground />
       </div>
+
       <CloudImage />
+
       <div className="container mx-auto px-6 relative z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={pathname}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
           >
-            {children}
+            <>{children}</>
           </motion.div>
         </AnimatePresence>
       </div>
     </motion.section>
   );
 };
-
 export default Hero;

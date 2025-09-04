@@ -9,7 +9,6 @@ import {
   Clock,
   Play,
   Target,
-  TrendingUp,
   Users,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -338,8 +337,8 @@ const ConsultingPage = () => {
               </span>
             </h1>
             <p className="text-2xl text-white/90 mb-12 leading-relaxed max-w-2xl ">
-              Descubrí capacitaciones en herramientas digitales mediante
-              cursos, workshops abiertos, y mentorías personalizadas.
+              Descubrí capacitaciones en herramientas digitales mediante cursos,
+              workshops abiertos, y mentorías personalizadas.
             </p>
             <Link href="#event-calendar">
               <Button
@@ -540,9 +539,9 @@ const ConsultingPage = () => {
                             <>¡Gratis!</>
                           ) : (
                             <span>
-                              <small className="text-2xl">{'
-}</small>{' '}
-                              {formatPrice(classItem.price)}{' '}
+                              <small className="text-2xl">
+                                {formatPrice(classItem.price)}
+                              </small>
                               <small className="text-sm">ARS</small>
                             </span>
                           )}
