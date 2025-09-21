@@ -1,14 +1,11 @@
 import {
   Cloud,
-  Facebook,
   Globe,
   Heart,
   Instagram,
-  Linkedin,
   Mail,
   MapPin,
   Phone,
-  Twitter,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -97,12 +94,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
+                <Link
                   href="/blog"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
             <h3 className="text-lg font-semibold my-6 text-light-blue-400">

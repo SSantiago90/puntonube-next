@@ -1,5 +1,5 @@
 'use client';
-import { Brain, Code, Palette, Users } from 'lucide-react';
+import { Brain, Code, Palette } from 'lucide-react';
 import Link from 'next/link';
 import { useRef } from 'react';
 
@@ -38,14 +38,14 @@ const services = [
     title: 'Desarrollo Web',
     description: 'Diseño y desarrollo de sitios web personalizados',
     features: [
-      'Multiplicá tus ventas creando tu tienda online',
+      'E-commerce & Tienda online',
       'Soluciones pensadas exclusivamente para vos.',
-      'Ecommerce, Blog, Portfolios para profesionales.',
-      'Administrá vos mismo el contenido de tu web',
+      'Páginas web, Blogs, y Portfolios para profesionales.',
+      'Sitios autoadministrables',
     ],
     color: 'from-sky-500 to-sky-700',
     iconColor: '#0099ff',
-  },
+  } /* 
   {
     icon: Users,
     title: 'Consultoría y Capacitación Tecnológica',
@@ -58,7 +58,7 @@ const services = [
     ],
     color: 'from-teal-400 to-teal-600',
     iconColor: '#009688',
-  },
+  }, */,
   {
     icon: Palette,
     title: 'Diseño Gráfico',
@@ -75,7 +75,7 @@ const services = [
   },
   {
     icon: Brain,
-    title: 'Servicios IA',
+    title: 'IA y Automatización',
     description:
       'Implementamos soluciones de inteligencia artificial para automatizar y optimizar procesos.',
     features: [
@@ -131,7 +131,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
@@ -179,7 +179,7 @@ const Services = () => {
                   <CardTitle className="text-3xl text-gray-800 group-hover:text-white transition-colors duration-500 font-bold">
                     {service.title}
                   </CardTitle>
-                  <CardDescription className="text-gray-600 group-hover:text-white/90 transition-colors duration-500 text-lg font-semibold">
+                  <CardDescription className="text-gray-600 group-hover:text-white/90 transition-colors duration-500 text-md font-semibold">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
@@ -188,7 +188,7 @@ const Services = () => {
                     {service.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
-                        className="flex items-center text-gray-700 group-hover:text-white/90 transition-colors duration-500"
+                        className="flex text-sm items-center text-gray-700 group-hover:text-white/90 transition-colors duration-500"
                       >
                         <div className="w-2 h-2 bg-gray-400 group-hover:bg-white rounded-full mr-3 transition-colors duration-500"></div>
                         {feature}

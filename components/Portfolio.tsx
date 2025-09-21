@@ -9,7 +9,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 
 type PortfolioItem = {
@@ -34,7 +33,9 @@ export default function Portfolio({
   title = 'Nuestro Trabajo',
   description,
 }: PortfolioProps) {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(
+    null
+  );
 
   return (
     <section id="portfolio" className="py-24 bg-gray-50">

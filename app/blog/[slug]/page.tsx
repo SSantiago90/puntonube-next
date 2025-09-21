@@ -32,7 +32,7 @@ async function getPost(slug: string) {
   try {
     const post = await getPostData(slug);
     return post;
-  } catch (e) {
+  } catch {
     notFound();
   }
 }

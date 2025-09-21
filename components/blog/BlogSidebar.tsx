@@ -15,30 +15,16 @@ interface BlogSidebarProps {
   }>;
   selectedCategory: string;
   onSelectCategory: (category: string) => void;
-  selectedMonth: string;
-  onSelectMonth: (month: string) => void;
 }
 
-const formatMonth = (month: string) => {
-  const [year, monthNum] = month.split('-');
-  const date = new Date(parseInt(year), parseInt(monthNum) - 1);
-  return date.toLocaleString('es-AR', { month: 'long', year: 'numeric' });
-};
-
-const BlogSidebar = ({ posts, selectedCategory, onSelectCategory, selectedMonth, onSelectMonth }: BlogSidebarProps) => {
+const BlogSidebar = ({
+  posts,
+  selectedCategory,
+  onSelectCategory,
+}: BlogSidebarProps) => {
   const categoryCounts = posts.reduce(
     (acc, post) => {
       acc[post.category] = (acc[post.category] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>
-  );
-
-  const archiveCounts = posts.reduce(
-    (acc, post) => {
-      const [year, month] = post.date.split('-');
-      const key = `${year}-${month}`;
-      acc[key] = (acc[key] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>
@@ -121,55 +107,6 @@ const BlogSidebar = ({ posts, selectedCategory, onSelectCategory, selectedMonth,
               )}
             >
               <span className="text-sm">{category}</span>
-              <Badge
-                variant="secondary"
-                className="ml-auto bg-light-blue-100 text-light-blue-700"
-              >
-                {count}
-              </Badge>
-            </Button>
-          ))}
-        </CardContent>
-      </Card>
-
-      {/* Archive by month */}
-      <Card className="shadow-lg border-0 bg-sky-600">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold text-sky-200 flex items-center">
-            <Calendar className="w-5 h-5 mr-2" />
-            Archivo
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          <Button
-            variant={'ghost'}
-            onClick={() => onSelectMonth('All')}
-            className={cn(
-              'w-full justify-start text-sky-100 hover:bg-sky-700 hover:text-white',
-              selectedMonth === 'All' &&
-                'bg-white text-sky-700 hover:bg-white/90 hover:text-sky-700'
-            )}
-          >
-            <span className="text-sm">Todos los meses</span>
-            <Badge
-              variant="secondary"
-              className="ml-auto bg-light-blue-100 text-light-blue-700"
-            >
-              {posts.length}
-            </Badge>
-          </Button>
-          {Object.entries(archiveCounts).map(([month, count]) => (
-            <Button
-              key={month}
-              variant={'ghost'}
-              onClick={() => onSelectMonth(month)}
-              className={cn(
-                'w-full justify-start text-sky-100 hover:bg-sky-700 hover:text-white',
-                selectedMonth === month &&
-                  'bg-white text-sky-700 hover:bg-white/90 hover:text-sky-700'
-              )}
-            >
-              <span className="text-sm">{formatMonth(month)}</span>
               <Badge
                 variant="secondary"
                 className="ml-auto bg-light-blue-100 text-light-blue-700"

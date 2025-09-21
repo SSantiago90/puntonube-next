@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import BlogPost from '@/components/blog/BlogPost';
+import BlogSecondaryMenu from '@/components/blog/BlogSecondaryMenu';
 import BlogSidebar from '@/components/blog/BlogSidebar';
 import { Button } from '@/components/ui/button';
 
@@ -27,9 +28,11 @@ const BlogClientPage = ({ allPosts }: { allPosts: Post[] }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedMonth, setSelectedMonth] = useState('All');
 
-  const filteredPosts = allPosts.filter(post => {
-    const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
-    const monthMatch = selectedMonth === 'All' || post.date.startsWith(selectedMonth);
+  const filteredPosts = allPosts.filter((post) => {
+    const categoryMatch =
+      selectedCategory === 'All' || post.category === selectedCategory;
+    const monthMatch =
+      selectedMonth === 'All' || post.date.startsWith(selectedMonth);
     return categoryMatch && monthMatch;
   });
 
@@ -55,6 +58,15 @@ const BlogClientPage = ({ allPosts }: { allPosts: Post[] }) => {
       </div>
 
       <div className="container mx-auto px-6 py-8">
+        <div className="mb-8">
+          <BlogSecondaryMenu
+            posts={allPosts}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+            selectedMonth={selectedMonth}
+            onSelectMonth={setSelectedMonth}
+          />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main content area */}
           <div className="lg:col-span-3">

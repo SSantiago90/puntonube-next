@@ -227,11 +227,12 @@ const UpcomingWebinars = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Próximos Webinars
+            Aprende con nosotros
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Únete a nuestras clases virtuales en vivo y acelera tu desarrollo
-            profesional
+            Únete a nuestras{' '}
+            <strong className="text-sky-600">clases virtuales en vivo</strong>
+            <br />y acelera tu desarrollo profesional
           </p>
         </div>
 

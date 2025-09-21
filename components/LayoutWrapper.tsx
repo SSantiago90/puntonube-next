@@ -1,6 +1,7 @@
 'use client';
 
 import { useHero } from '@/context/HeroContext';
+
 import Hero from './Hero';
 
 const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
