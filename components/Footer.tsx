@@ -40,8 +40,9 @@ const Footer = () => {
               </a>
               */}
               <a
-                href="#"
+                href="https://www.instagram.com/creativo.nube/"
                 className="text-gray-400 hover:text-light-blue-400 transition-colors"
+                target="_blank"
               >
                 <Instagram className="h-5 w-5" />
               </a>
@@ -105,7 +106,7 @@ const Footer = () => {
               </li>
             </ul>
             <h3 className="text-lg font-semibold my-6 text-light-blue-400">
-              Empresa
+              Nosotros
             </h3>
             <ul className="space-y-3">
               <li>
