@@ -4,9 +4,7 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 
-import BlogSidebar from '@/components/blog/BlogSidebar';
 import { RelatedPostCard } from '@/components/blog/RelatedPostCard';
-import SubscribeCard from '@/components/blog/SubscribeCard';
 import { Callout } from '@/components/mdx/Callout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

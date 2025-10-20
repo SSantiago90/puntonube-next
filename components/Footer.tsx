@@ -1,9 +1,5 @@
-import {
-  SiInsta360,
-  SiInstagram,
-  SiWhatsapp,
-} from '@icons-pack/react-simple-icons';
-import { Cloud, Globe, Heart, Instagram, Mail, Phone } from 'lucide-react';
+import { SiInstagram, SiWhatsapp } from '@icons-pack/react-simple-icons';
+import { Cloud, Heart, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {

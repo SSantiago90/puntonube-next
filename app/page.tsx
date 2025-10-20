@@ -17,7 +17,6 @@ export default function Home() {
         <Services />
         <UpcomingWebinars webinars={webinars} />
         <BlogPreview posts={posts} />
-        {/* <About /> */}
         <Contact />
       </div>
     </main>
