@@ -15,12 +15,6 @@ const components = {
   Callout,
 };
 
-const options = {
-  mdxOptions: {
-    rehypePlugins: [[rehypePrettyCode, { theme: 'github-dark' }]],
-  },
-};
-
 export async function generateStaticParams() {
   const posts = getAllPosts();
   return posts.map((post) => ({
@@ -42,7 +36,8 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPost(params.slug);
+  const awaitParams = await params;
+  const post = await getPost(awaitParams.slug);
   const allPosts = getAllPosts();
   const relatedPosts = allPosts
     .filter((p) => p.category === post.category && p.slug !== post.slug)
@@ -109,7 +104,13 @@ export default async function PostPage({
                 <MDXRemote
                   source={post.content}
                   components={components}
-                  options={options}
+                  options={{
+                    mdxOptions: {
+                      rehypePlugins: [
+                        [rehypePrettyCode, { theme: 'github-dark' }],
+                      ],
+                    },
+                  }}
                 />
               </div>
             </article>
