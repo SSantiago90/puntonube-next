@@ -39,6 +39,7 @@ const Hero = ({
       {prevLink && (
         <Link
           href={prevLink}
+          scroll={false}
           className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 bg-white/80 rounded-full shadow hover:bg-white transition-colors"
         >
           <span className={`text-3xl ${color}`}>
@@ -51,6 +52,7 @@ const Hero = ({
       {nextLink && (
         <Link
           href={nextLink}
+          scroll={false}
           className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 bg-white/80 rounded-full shadow hover:bg-white transition-colors"
         >
           <span className={`text-3xl ${color}`}>
