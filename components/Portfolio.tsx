@@ -15,7 +15,9 @@ type PortfolioItem = {
   id: number;
   title: string;
   description: string;
+  detailedDescription: string;
   image: string;
+  gallery: string[];
   tags: string[];
   category: string;
 };

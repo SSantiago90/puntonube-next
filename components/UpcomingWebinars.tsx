@@ -1,5 +1,3 @@
-'use client';
-
 import Autoplay from 'embla-carousel-autoplay';
 import { ArrowRight, Calendar, Clock, Users } from 'lucide-react';
 import Link from 'next/link';
@@ -15,6 +13,20 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 
+interface Webinar {
+  id: number;
+  image: string;
+  title: string;
+  level: string;
+  price: string;
+  description: string;
+  date: string;
+  time: string;
+  duration: string;
+  spots: number;
+  instructor: string;
+}
+
 const getLevelColor = (level: string) => {
   switch (level) {
     case 'Principiante':
@@ -28,7 +40,7 @@ const getLevelColor = (level: string) => {
   }
 };
 
-const UpcomingWebinars = ({ webinars }) => {
+const UpcomingWebinars = ({ webinars }: { webinars: Webinar[] }) => {
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-light-blue-50">
       <div className="container mx-auto px-6">
