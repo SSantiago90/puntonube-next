@@ -86,11 +86,6 @@ const BlogClientPage = ({ allPosts }: { allPosts: Post[] }) => {
                 setSelectedCategory(category);
                 setSelectedMonth('All'); // Reset month filter
               }}
-              selectedMonth={selectedMonth}
-              onSelectMonth={(month) => {
-                setSelectedMonth(month);
-                setSelectedCategory('All'); // Reset category filter
-              }}
             />
           </div>
         </div>
