@@ -50,7 +50,7 @@ const Blog = ({ posts }) => {
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category, index) => (
             <Button
-              key={index}
+              key={category + index}
               variant={activeCategory === category ? 'default' : 'outline'}
               onClick={() => handleCategoryFilter(category)}
               className={`rounded-full px-6 py-2 transition-all duration-300 ${
@@ -83,7 +83,7 @@ const Blog = ({ posts }) => {
         {/* Grid de posts */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {filteredPosts.slice(0, visiblePosts).map((post) => (
-            <Link href={`/blog/${post.slug}`} key={post.id}>
+            <Link key={post.slug} href={`/blog/${post.slug}`}>
               <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden bg-white">
                 <div className="grid grid-cols-1 md:grid-cols-4">
                   {/* Imagen del post */}

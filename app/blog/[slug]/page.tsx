@@ -4,7 +4,9 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypePrettyCode from 'rehype-pretty-code';
 
+import BlogSidebar from '@/components/blog/BlogSidebar';
 import { RelatedPostCard } from '@/components/blog/RelatedPostCard';
+import SubscribeCard from '@/components/blog/SubscribeCard';
 import { Callout } from '@/components/mdx/Callout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -69,62 +71,70 @@ export default async function PostPage({
       </div>
 
       <div className="container mx-auto px-6 py-8">
-        <article className="max-w-4xl mx-auto">
-          {/* Post Header */}
-          <header className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {post.title}
-            </h1>
-            <div className="flex items-center justify-between text-sm text-gray-500">
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-1">
-                  <Calendar className="w-4 h-4" />
-                  <span>{post.date}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main content area */}
+          <div className="lg:col-span-3">
+            <article className="max-w-4xl mx-auto">
+              {/* Post Header */}
+              <header className="mb-8">
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                  {post.title}
+                </h1>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>{post.date}</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>{post.readTime} lectura</span>
+                    </div>
+                  </div>
+                  <Badge variant="outline">{post.category}</Badge>
                 </div>
-                <div className="flex items-center space-x-1">
-                  <User className="w-4 h-4" />
-                  <span>{post.readTime} lectura</span>
+              </header>
+
+              {/* Featured Image */}
+              {post.image && (
+                <div className="mb-8 rounded-lg overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              )}
+
+              {/* Post Content */}
+              <div className="prose prose-lg max-w-none">
+                <MDXRemote
+                  source={post.content}
+                  components={components}
+                  options={options}
+                />
+              </div>
+            </article>
+
+            {relatedPosts.length > 0 && (
+              <div className="max-w-4xl mx-auto mt-16">
+                <div className="border-t pt-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                    Posts Relacionados
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {relatedPosts.map((relatedPost) => (
+                      <RelatedPostCard
+                        post={relatedPost}
+                        key={relatedPost.slug}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-              <Badge variant="outline">{post.category}</Badge>
-            </div>
-          </header>
-
-          {/* Featured Image */}
-          {post.image && (
-            <div className="mb-8 rounded-lg overflow-hidden">
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          )}
-
-          {/* Post Content */}
-          <div className="prose prose-lg max-w-none">
-            <MDXRemote
-              source={post.content}
-              components={components}
-              options={options}
-            />
+            )}
           </div>
-        </article>
-
-        {relatedPosts.length > 0 && (
-          <div className="max-w-4xl mx-auto mt-16">
-            <div className="border-t pt-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Posts Relacionados
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {relatedPosts.map((relatedPost) => (
-                  <RelatedPostCard post={relatedPost} key={relatedPost.slug} />
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

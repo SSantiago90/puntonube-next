@@ -1,12 +1,9 @@
 import {
-  Cloud,
-  Globe,
-  Heart,
-  Instagram,
-  Mail,
-  MapPin,
-  Phone,
-} from 'lucide-react';
+  SiInsta360,
+  SiInstagram,
+  SiWhatsapp,
+} from '@icons-pack/react-simple-icons';
+import { Cloud, Globe, Heart, Instagram, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -41,7 +38,7 @@ const Footer = () => {
                 className="text-gray-400 hover:text-light-blue-400 transition-colors"
                 target="_blank"
               >
-                <Instagram className="h-5 w-5" />
+                <SiInstagram className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -131,16 +128,30 @@ const Footer = () => {
               Contacto
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-light-blue-400 flex-shrink-0" />
-                <div>
-                  <div className="text-2xl font-bold text-white">
-                    +1 (555) 123-4567
-                  </div>
-                  <div className="text-sm text-gray-400">
-                    Lun - Vie: 8:00 - 18:00
+              <a href="https://wa.me/5493434191727">
+                <div className="flex items-center space-x-3">
+                  <SiWhatsapp className="h-5 w-5 text-light-blue-400 flex-shrink-0" />
+                  <div>
+                    <div className="text-3xl font-bold text-white">
+                      (343) 419 1727
+                    </div>
                   </div>
                 </div>
+              </a>
+
+              <div className="flex items-center space-x-3">
+                <a
+                  href="tel:+5493434571505"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-light-blue-400 flex-shrink-0" />
+                    <div>
+                      <div className="font-bold text-white">(343) 457 1505</div>
+                    </div>
+                  </div>
+                </a>
               </div>
 
               <div className="flex items-center space-x-3">
@@ -151,22 +162,18 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-light-blue-400 flex-shrink-0" />
-                <div>
-                  <div className="text-white">123 Tech Street</div>
-                  <div className="text-sm text-gray-400">
-                    Ciudad Digital, CD 12345
+              <div className="space-x-3">
+                <a href="https://www.instagram.com/creativo.nube/">
+                  <div className="flex items-center space-x-3">
+                    <SiInstagram className="h-5 w-5 text-light-blue-400 flex-shrink-0" />
+                    <div>
+                      <div className="text-white">Creativo.Nube</div>
+                      <div className="text-sm text-gray-400">
+                        Síguenos en redes
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <Globe className="h-5 w-5 text-light-blue-400 flex-shrink-0" />
-                <div>
-                  <div className="text-white">www.puntonube.com</div>
-                  <div className="text-sm text-gray-400">Síguenos online</div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
