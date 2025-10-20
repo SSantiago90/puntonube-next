@@ -12,20 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
-interface Webinar {
-  id: number;
-  image: string;
-  title: string;
-  level: string;
-  price: string;
-  description: string;
-  date: string;
-  time: string;
-  duration: string;
-  spots: number;
-  instructor: string;
-}
+import { Webinar } from '@/lib/webinars';
 
 const getLevelColor = (level: string) => {
   switch (level) {

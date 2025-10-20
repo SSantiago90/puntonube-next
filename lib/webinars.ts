@@ -1,4 +1,27 @@
-export const upcomingClasses = [
+export interface Webinar {
+  id: number;
+  title: string;
+  date: string;
+  image: string;
+  time: string;
+  duration: string;
+  instructor: string;
+  level: string;
+  price: number;
+  spots: number;
+  certification: boolean;
+  description: string;
+  detailedContent: {
+    intro: string;
+    topics: {
+      name: string;
+      description: string;
+    }[];
+    footer: string;
+  };
+}
+
+export const upcomingClasses: Webinar[] = [
   {
     id: 1,
     title: 'Introducción al Desarrollo Web',
@@ -191,7 +214,7 @@ export const upcomingClasses = [
   },
 ];
 
-export function getAllWebinars() {
+export function getAllWebinars(): Webinar[] {
   return upcomingClasses;
 }
 

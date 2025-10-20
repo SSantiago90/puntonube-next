@@ -4,11 +4,11 @@ import HeroHome from '@/components/HeroHome';
 import Services from '@/components/Services';
 import UpcomingWebinars from '@/components/UpcomingWebinars';
 import { getAllPosts } from '@/lib/posts';
-import { getAllWebinars } from '@/lib/webinars';
+import { getAllWebinars, Webinar } from '@/lib/webinars';
 
 export default function Home() {
   const posts = getAllPosts();
-  const webinars = getAllWebinars();
+  const webinars: Webinar[] = getAllWebinars();
 
   return (
     <main className="min-h-screen">
