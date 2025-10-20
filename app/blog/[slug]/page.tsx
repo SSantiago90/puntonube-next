@@ -34,7 +34,7 @@ async function getPost(slug: string) {
 export default async function PostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const awaitParams = await params;
   const post = await getPost(awaitParams.slug);
