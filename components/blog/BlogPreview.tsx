@@ -13,8 +13,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Post } from '@/lib/posts';
 
-const Blog = ({ posts }) => {
+const Blog = ({ posts }: { posts: Post[] }) => {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [visiblePosts, setVisiblePosts] = useState(4);
 

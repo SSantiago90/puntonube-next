@@ -4,8 +4,25 @@ import path from 'path';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
-export function getAllPosts() {
+export type Post = {
+  slug: string;
+  title: string;
+  date: string;
+  summary: string;
+  image: string;
+  category: string;
+  excerpt: string;
+  author: {
+    name: string;
+    role: string;
+    avatar: string;
+  };
+  readTime: string;
+};
+
+export function getAllPosts(): Post[] {
   const fileNames = fs.readdirSync(postsDirectory);
+
   const allPostsData = fileNames.map((fileName) => {
     const slug = fileName.replace(/\.(md|mdx)$/, '');
     const fullPath = path.join(postsDirectory, fileName);
@@ -23,7 +40,7 @@ export function getAllPosts() {
         author: { name: string; role: string; avatar: string };
         readTime: string;
       }),
-    };
+    } as Post;
   });
 
   return allPostsData.sort((a, b) => {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { v4 as genId } from 'uuid';
 
 import type { ToastActionElement, ToastProps } from '../components/ui/toast';
 
