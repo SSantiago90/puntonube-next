@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import { v4 as genId } from 'uuid';
 

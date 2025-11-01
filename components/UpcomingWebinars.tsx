@@ -1,3 +1,5 @@
+'use client';
+
 import Autoplay from 'embla-carousel-autoplay';
 import { ArrowRight, Calendar, Clock, Users } from 'lucide-react';
 import Link from 'next/link';
